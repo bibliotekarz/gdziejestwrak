@@ -4,14 +4,20 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-receiver = "arek@bibliotekarz.com"
-body = "ĄŻŹŚćńŁÓĘ \n Hello there from Yagmail"
-filename = "document.pdf"
+receiver = 'as.po@interia.pl'
+subject = "tytuł ąęółńćźżśą"
+contents = "Nie ma Terrego"
 
-yag = yagmail.SMTP(getenv('PYPOCZTA_EMAIL'), getenv('PYPOCZTA_PASS'))
-yag.send(
-    to=receiver,
-    subject="Yagmail tytuł ąęółńćźżśą",
-    contents=body
-# #    attachments=filename,
-)
+
+def send_mail(receiver, subject='hello', contents='...'):
+    yag = yagmail.SMTP(getenv('PYPOCZTA_EMAIL'), getenv('PYPOCZTA_PASS'))
+    yag.set_logging(yagmail.logging.DEBUG, 'somelocalfile.log')
+    yag.send(
+        to=receiver,
+        subject=subject,
+        contents=contents
+    )
+    return
+
+
+send_mail(receiver, subject, contents)
