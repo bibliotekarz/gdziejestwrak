@@ -9,7 +9,7 @@ from json import load
 load_dotenv()
 
 receiver = 'as.po@interia.pl'
-subject = 'tytuł ąęółńćźżśą'
+subject = 'tytuł1 ąęółńćźżśą'
 contents = 'Nie ma Terrego'
 url_api = 'http://api.sejm.gov.pl/sejm/term9/MP'
 club_name = "PiS"
@@ -60,7 +60,10 @@ def work_json():
     with open('data.json', 'r', encoding='utf8') as json_file:
         data = load(json_file)
         while i < len(data):
-            meps_emails.append(data[i]['email']) if data[i]['club'] == club_name else ""
+            if data[i]['active'] == True:
+                _ = [data[i]['email'], data[i]['firstName'], data[i]['firstLastName']]
+                meps_emails.append(_) if data[i]['club'] == club_name else ""
+
             i += 1
     return meps_emails
 
@@ -71,15 +74,30 @@ def random_email(meps):
 
 # print(random_email(work_json()))
 
+
 def random_subject():
     subject_list = ['Kto odkąd PiS jest u władzy odpowiada za brak działań międzynarodowych aby odzyskać wrak?',
-                'Gdzie jest wrak?',
-                'Czy był zamach na Prezydenta i Rzeczpospolitą?',
-                'Gdzie jest raport Smoleński?',
-                'Czy Jarosław kazał lądować bratu?',
-                'Czy Jarosława gryzie sumienie za nakazanie bratu lądowania'
-                'Ile czasu potrzeba aby rząd zadbał o sprawiedliwość #zamachsmoleński?']
+                    'Gdzie jest wrak?',
+                    'Czy był zamach na Prezydenta i Rzeczpospolitą?',
+                    'Gdzie jest raport Smoleński?',
+                    'Czy Jarosław kazał lądować bratu?',
+                    'Ile kosztuje Polskę indolencja Antoniego Maciarewicza?'
+                    'Czy Jarosława gryzie sumienie za nakazanie bratu lądowania'
+                    'Ile czasu potrzeba aby Rząd zadbał o sprawiedliwość #zamachsmoleński?']
     subject = choice(subject_list)
     return subject
 
-print(random_subject())
+# print(random_subject())
+
+# {"active":true,
+#  "club":"KO",
+#  "discritNum":41,
+#  "districtName":"Szczecin",
+#  "email":"Artur.Lacki@sejm.pl",
+#  "firstLastName":"Artur Łącki",
+#  "firstName":"Artur",
+#  "id":222,
+#  "lastFirstName":"Łącki Artur",
+#  "lastName":"Łącki",
+#  "secondName":"Jarosław",
+#  "voivodeship":"zachodniopomorskie"}
