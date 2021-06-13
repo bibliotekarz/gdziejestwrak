@@ -51,7 +51,7 @@ def update_data():
     return status
 
 
-print(update_data())
+# print(update_data())
 
 
 def work_json():
@@ -69,4 +69,17 @@ def random_email(meps):
     return choice(meps)
 
 
-print(random_email(work_json()))
+# print(random_email(work_json()))
+
+def random_subject():
+    subject_list = ['Kto odkąd PiS jest u władzy odpowiada za brak działań międzynarodowych aby odzyskać wrak?',
+                'Gdzie jest wrak?',
+                'Czy był zamach na Prezydenta i Rzeczpospolitą?',
+                'Gdzie jest raport Smoleński?',
+                'Czy Jarosław kazał lądować bratu?',
+                'Czy Jarosława gryzie sumienie za nakazanie bratu lądowania'
+                'Ile czasu potrzeba aby rząd zadbał o sprawiedliwość #zamachsmoleński?']
+    subject = choice(subject_list)
+    return subject
+
+print(random_subject())
