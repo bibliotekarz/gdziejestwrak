@@ -51,7 +51,7 @@ def update_data():
     return status
 
 
-# print(update_data())
+print(update_data())
 
 
 def work_json():
@@ -72,7 +72,7 @@ def random_email(meps):
     return choice(meps)
 
 
-# print(random_email(work_json()))
+print(random_email(work_json()))
 
 
 def random_subject():
