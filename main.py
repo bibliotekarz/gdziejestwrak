@@ -83,11 +83,11 @@ def random_subject():
                     'Czy Jarosław kazał lądować bratu?',
                     'Ile kosztuje Polskę indolencja Antoniego Maciarewicza?'
                     'Czy Jarosława gryzie sumienie za nakazanie bratu lądowania'
-                    'Ile czasu potrzeba aby Rząd zadbał o sprawiedliwość #zamachsmoleński?']
+                    'Ile jeszcze czasu potrzeba aby Rząd zadbał o sprawiedliwość #zamachsmoleński?']
     subject = choice(subject_list)
     return subject
 
-# print(random_subject())
+print(random_subject())
 
 # {"active":true,
 #  "club":"KO",
