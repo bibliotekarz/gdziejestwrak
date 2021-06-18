@@ -1,17 +1,19 @@
 from random import choice
 import yagmail
-from os import getenv, path
+from os import getenv
 from dotenv import load_dotenv
-from datetime import datetime
-import requests
 from json import load
+from declension import declension_vocative
+from politicians import update_data
+from bodytitle import random_subject
+
 
 load_dotenv()
 
 receiver = 'as.po@interia.pl'
 subject = 'tytuł1 ąęółńćźżśą'
 contents = 'Nie ma Terrego'
-url_api = 'http://api.sejm.gov.pl/sejm/term9/MP'
+
 club_name = "PiS"
 
 
@@ -29,29 +31,7 @@ def send_mail(receiver, subject='hello', contents='...'):
 # send_mail(receiver, subject, contents)
 
 
-def update_data():
-    status = 'database of deputies not downloaded'
-    if path.exists('data.json'):
-        now = datetime.now().weekday()
-        current_date = datetime.now().date()
-        modyfi_date = datetime.fromtimestamp(path.getmtime('data.json')).date()
 
-        if now == (4 or 0) and current_date - modyfi_date == 0:
-            data = requests.get(url_api)
-            data.raise_for_status()
-            with open("data.json", "w", encoding='utf-8') as f:
-                f.write(data.text)
-            status = 'database of deputies has been updated'
-    else:
-        data = requests.get(url_api)
-        data.raise_for_status()
-        with open("data.json", "w", encoding='utf-8') as f:
-            f.write(data.text)
-        status = 'database of deputies downloaded'
-    return status
-
-
-print(update_data())
 
 
 def work_json():
@@ -75,19 +55,7 @@ def random_email(meps):
 print(random_email(work_json()))
 
 
-def random_subject():
-    subject_list = ['Kto odkąd PiS jest u władzy odpowiada za brak działań międzynarodowych aby odzyskać wrak?',
-                    'Gdzie jest wrak?',
-                    'Czy był zamach na Prezydenta i Rzeczpospolitą?',
-                    'Gdzie jest raport Smoleński?',
-                    'Czy Jarosław kazał lądować bratu?',
-                    'Ile kosztuje Polskę indolencja Antoniego Maciarewicza?'
-                    'Czy Jarosława gryzie sumienie za nakazanie bratu lądowania'
-                    'Ile jeszcze czasu potrzeba aby Rząd zadbał o sprawiedliwość #zamachsmoleński?']
-    subject = choice(subject_list)
-    return subject
 
-print(random_subject())
 
 # {"active":true,
 #  "club":"KO",
