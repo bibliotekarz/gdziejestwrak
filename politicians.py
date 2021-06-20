@@ -1,7 +1,10 @@
 from datetime import datetime
 import requests
 from os import path
+from json import load
 
+
+club_name = "PiS"
 
 def update_data():
     url_api = 'http://api.sejm.gov.pl/sejm/term9/MP'
@@ -25,5 +28,19 @@ def update_data():
         status = 'database of deputies downloaded'
     return status
 
+def get_deputies()->list:
+    i = 0
+    deputies = []
+    with open('data.json', 'r', encoding='utf8') as json_file:
+        data = load(json_file)
+        while i < len(data):
+            if data[i]['active'] == True:
+                _ = [data[i]['email'], data[i]['firstName'], data[i]['firstLastName']]
+                deputies.append(_) if data[i]['club'] == club_name else ""
+            i += 1
 
-print(update_data())
+    return deputies
+
+
+print(get_deputies()[-1][-1], ' ', type(get_deputies()))
+# print(update_data())

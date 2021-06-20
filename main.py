@@ -12,12 +12,11 @@ load_dotenv()
 
 receiver = 'as.po@interia.pl'
 subject = 'tytuł1 ąęółńćźżśą'
-contents = 'Nie ma Terrego'
-
-club_name = "PiS"
+contents = 'Nie ma Terrego tutaj'
 
 
-def send_mail(receiver, subject='hello', contents='...'):
+
+def send_mail(receiver: str, subject: str = 'hello', contents: str = '...'):
     yag = yagmail.SMTP(getenv('PYPOCZTA_EMAIL'), getenv('PYPOCZTA_PASS'))
     yag.set_logging(yagmail.logging.DEBUG, 'somelocalfile.log')
     yag.send(
@@ -51,7 +50,7 @@ def work_json():
 def random_email(meps):
     return choice(meps)
 
-
+print(update_data(), ' update data')
 print(random_email(work_json()))
 
 
