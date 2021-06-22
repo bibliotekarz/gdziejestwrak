@@ -42,5 +42,5 @@ def get_deputies()->list:
     return deputies
 
 
-print(get_deputies()[-1][-1], ' ', type(get_deputies()))
-# print(update_data())
+print(get_deputies(), ' ', type(get_deputies()))
+print(update_data())

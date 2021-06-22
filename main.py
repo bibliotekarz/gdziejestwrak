@@ -5,15 +5,16 @@ from dotenv import load_dotenv
 from json import load
 from declension import declension_vocative
 from politicians import update_data
-from bodytitle import random_subject
+from bodytitle import random_subject, random_body
 
 
 load_dotenv()
 
 receiver = 'as.po@interia.pl'
-subject = 'tytuł1 ąęółńćźżśą'
-contents = 'Nie ma Terrego tutaj'
-
+subject = random_subject()
+contents = 'body maila'
+club_name = "PiS"
+#TODO: resolve duplicate club_name
 
 
 def send_mail(receiver: str, subject: str = 'hello', contents: str = '...'):
@@ -27,7 +28,7 @@ def send_mail(receiver: str, subject: str = 'hello', contents: str = '...'):
     return
 
 
-# send_mail(receiver, subject, contents)
+send_mail(receiver, subject, contents)
 
 
 
@@ -52,9 +53,7 @@ def random_email(meps):
 
 print(update_data(), ' update data')
 print(random_email(work_json()))
-
-
-
+print(random_body(random_email(work_json())[2]), " tekst którego szukam")
 
 # {"active":true,
 #  "club":"KO",
