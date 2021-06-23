@@ -12,10 +12,15 @@ load_dotenv()
 
 receiver = 'as.po@interia.pl'
 subject = random_subject()
-contents = 'body maila'
+contents = random_body(name)
 club_name = "PiS"
 #TODO: resolve duplicate club_name
 
+'''
+from declension import declension_vocative
+name = declension_vocative()
+#TODO = where to embed name ?
+'''
 
 def send_mail(receiver: str, subject: str = 'hello', contents: str = '...'):
     yag = yagmail.SMTP(getenv('PYPOCZTA_EMAIL'), getenv('PYPOCZTA_PASS'))

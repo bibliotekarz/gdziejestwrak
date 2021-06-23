@@ -8,7 +8,8 @@ def declension_vocative(envoy: str = 'adrian+duda') -> str:
     parse_xpath = html.fromstring(change_the_name)
     changed_name = parse_xpath.xpath('//html/body/div/form/table/tr/td/table/tr/td')
     for item in changed_name:
-        vocative = ' '.join(item.text_content().split()) + " .."
+        vocative = ' '.join(item.text_content().split())
     return vocative
 
 print(declension_vocative('Artur Szałabawka'))
+
