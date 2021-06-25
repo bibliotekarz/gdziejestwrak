@@ -13,8 +13,8 @@ def update_data():
         now = datetime.now().weekday()
         current_date = datetime.now().date()
         modyfi_date = datetime.fromtimestamp(path.getmtime('data.json')).date()
-
-        if now == (4 or 0) and current_date - modyfi_date == 0:
+        date_testing = str(current_date - modyfi_date)
+        if now == (4 or 0) and date_testing != '0:00:00':
             data = requests.get(url_api)
             data.raise_for_status()
             with open("data.json", "w", encoding='utf-8') as f:
@@ -42,5 +42,5 @@ def get_deputies()->list:
     return deputies
 
 
-print(get_deputies(), ' ', type(get_deputies()))
+print('\n\n', get_deputies(), ' ', type(get_deputies()))
 print(update_data())
