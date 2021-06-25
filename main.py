@@ -13,6 +13,7 @@ receiver = 'as.po@interia.pl'
 subject = random_subject()
 contents = 'tere'  # random_body(name)
 club_name = "PiS"
+chosen = []
 # TODO: resolve duplicate club_name
 
 '''
@@ -36,7 +37,7 @@ def send_mail(receiver: str, subject: str = 'hello', contents: str = '...'):
 # send_mail(receiver, subject, contents)
 
 
-def work_json():
+def work_json()->list:
     i = 0
     meps_data = []
     with open('data.json', 'r', encoding='utf8') as json_file:
@@ -49,17 +50,17 @@ def work_json():
     return meps_data
 
 
-def random_email(meps):
+def random_email(meps:list)->list:
     chosen = choice(meps)
     vocative = declension_vocative(chosen[2])
     chosen.append(vocative)
     return chosen
 
+def get_name_for_body():
+    name = random_email(work_json())[-1]
+    return name
 
-# print(work_json())
-# print(update_data(), ' update data')
-print(random_email(work_json()))
-# print(random_body(random_email(work_json())[2]), " tekst którego szukam")
+print(random_body(get_name_for_body()))
 
 # {"active":true,
 #  "club":"KO",
