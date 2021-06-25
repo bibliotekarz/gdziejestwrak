@@ -4,23 +4,23 @@ from os import getenv
 from dotenv import load_dotenv
 from json import load
 from declension import declension_vocative
-from politicians import update_data
+from politicians import update_data, get_deputies
 from bodytitle import random_subject, random_body
-
 
 load_dotenv()
 
 receiver = 'as.po@interia.pl'
 subject = random_subject()
-contents = random_body(name)
+contents = 'tere'  # random_body(name)
 club_name = "PiS"
-#TODO: resolve duplicate club_name
+# TODO: resolve duplicate club_name
 
 '''
 from declension import declension_vocative
 name = declension_vocative()
 #TODO = where to embed name ?
 '''
+
 
 def send_mail(receiver: str, subject: str = 'hello', contents: str = '...'):
     yag = yagmail.SMTP(getenv('PYPOCZTA_EMAIL'), getenv('PYPOCZTA_PASS'))
@@ -33,32 +33,33 @@ def send_mail(receiver: str, subject: str = 'hello', contents: str = '...'):
     return
 
 
-send_mail(receiver, subject, contents)
-
-
-
+# send_mail(receiver, subject, contents)
 
 
 def work_json():
     i = 0
-    meps_emails = []
+    meps_data = []
     with open('data.json', 'r', encoding='utf8') as json_file:
         data = load(json_file)
         while i < len(data):
             if data[i]['active'] == True:
                 _ = [data[i]['email'], data[i]['firstName'], data[i]['firstLastName']]
-                meps_emails.append(_) if data[i]['club'] == club_name else ""
-
+                meps_data.append(_) if data[i]['club'] == club_name else ""
             i += 1
-    return meps_emails
+    return meps_data
 
 
 def random_email(meps):
-    return choice(meps)
+    chosen = choice(meps)
+    vocative = declension_vocative(chosen[2])
+    chosen.append(vocative)
+    return chosen
 
-print(update_data(), ' update data')
+
+# print(work_json())
+# print(update_data(), ' update data')
 print(random_email(work_json()))
-print(random_body(random_email(work_json())[2]), " tekst którego szukam")
+# print(random_body(random_email(work_json())[2]), " tekst którego szukam")
 
 # {"active":true,
 #  "club":"KO",

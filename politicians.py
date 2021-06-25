@@ -28,7 +28,10 @@ def update_data():
         status = 'database of deputies downloaded'
     return status
 
+
+
 def get_deputies()->list:
+#TODO: duplicated functionality ?
     i = 0
     deputies = []
     with open('data.json', 'r', encoding='utf8') as json_file:
@@ -42,5 +45,5 @@ def get_deputies()->list:
     return deputies
 
 
-print('\n\n', get_deputies(), ' ', type(get_deputies()))
-print(update_data())
+# print('-----\n\n', get_deputies(), ' ', type(get_deputies()), '-----\n\n')
+# print(update_data())

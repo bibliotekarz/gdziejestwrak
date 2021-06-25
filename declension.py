@@ -10,6 +10,3 @@ def declension_vocative(envoy: str = 'adrian+duda') -> str:
     for item in changed_name:
         vocative = ' '.join(item.text_content().split())
     return vocative
-
-print(declension_vocative('Artur Szałabawka'))
-
