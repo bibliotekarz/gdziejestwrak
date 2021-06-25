@@ -1,5 +1,5 @@
 from random import choice
-
+from politicians import get_name_for_body, work_json
 
 def random_subject():
     email_title = ['Kto odkąd PiS jest u władzy odpowiada za brak działań międzynarodowych aby odzyskać wrak',
@@ -31,6 +31,7 @@ def random_body(name:str ="adrian duda")->str:
     link_photo, link_alt = drawn
     first_name = name.split(' ')[0]
     last_name = name.split(' ')[1]
+
     body = f'<h1>Dzień dobry</h1>\n\n<p><b>Nadszedł czas aby podjąć bardziej zdecydowane działania. <h2>{first_name} {last_name}</h2> wyciągnij rękę po to co nasze, bez oglądania się na Unię Europejską czy NATO</b></p>\n\n'\
            f'<p>{choice(citations)}</p>\n\n<p>Mimo szumnych wyborczych obietnic od 11 lat Polki i Polacy nie odzyskali tego symbolu narodowej tragedii wyrażonej śmiercią Prezydentów.</p>\n\n' \
            f'<img="{link_photo}" alt="{link_alt}"> \n\n<p>{first_name} weź się do roboty i napraw to.</p>'
