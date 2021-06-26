@@ -10,12 +10,13 @@ club_name = "PiS"
 
 def update_data():
     url_api = 'http://api.sejm.gov.pl/sejm/term9/MP'
-    status = 'database of deputies not downloaded'
+    status = 'init'
     if path.exists('data.json'):
         now = datetime.now().weekday()
         current_date = datetime.now().date()
         modyfi_date = datetime.fromtimestamp(path.getmtime('data.json')).date()
         date_testing = str(current_date - modyfi_date)
+        status = 'database of deputies has not been changed'
         if now == (4 or 0) and date_testing != '0:00:00':
             data = requests.get(url_api)
             data.raise_for_status()
@@ -30,6 +31,7 @@ def update_data():
         status = 'database of deputies downloaded'
     return status
 
+print((update_data()))
 #
 def work_json() -> list:
     i = 0
@@ -61,3 +63,4 @@ def get_name_for_body(chosen):
     return name
 
 name = get_name_for_body(chosen)
+# print(name)
