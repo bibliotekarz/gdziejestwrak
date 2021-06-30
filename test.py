@@ -1,6 +1,5 @@
-import pytest
 from declension import declension_vocative
-from politicians import get_name_for_body, update_data
+from politicians import get_name_for_body, random_email
 
 
 def test_declension_vocative():
@@ -11,7 +10,11 @@ def test_get_name_for_body():
     chosen = ['Witold.Czarnecki@sejm.pl', 'Witold', 'Witold Czarnecki', 'Witoldzie Czarnecki']
     assert get_name_for_body(chosen) == 'Witoldzie Czarnecki'
 
+def test_random_email():
+    meps =[['Wojciech.Kossakowski@sejm.pl', 'Wojciech', 'Wojciech Kossakowski'], ['Jerzy.Malecki@sejm.pl', 'Jerzy', 'Jerzy Małecki'], \
+           ['Michal.Wypij@sejm.pl', 'Michał', 'Michał Wypij'], ['Jan.Dziedziczak@sejm.pl', 'Jan', 'Jan Dziedziczak'], \
+           ['Piotr.Kaleta@sejm.pl', 'Piotr', 'Piotr Kaleta'], ['Marlena.Malag@sejm.pl', 'Marlena', 'Marlena Magdalena Maląg'], \
+           ['Jan.Mosinski@sejm.pl', 'Jan', 'Jan Mosiński'], ['Katarzyna.Sojka@sejm.pl', 'Katarzyna', 'Katarzyna Sójka']]
 
-def test_update_data():
-    assert update_data() == 'database of deputies has been updated1' or 'database of deputies downloaded1' or 'database of deputies has not been changed1'
-#TODO the error accepts anything  :(
+    assert len(random_email(meps)) == 4
+    assert type(random_email(meps)) == list
