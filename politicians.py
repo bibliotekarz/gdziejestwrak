@@ -11,7 +11,7 @@ url_api = 'http://api.sejm.gov.pl/sejm/term9/MP'
 status = 'init'
 
 
-def is_data_exist():
+def is_data_exist() -> str:
     status = 'database of deputies has not been changed'
     if not path.exists('data.json'):
         data = requests.get(url_api)
@@ -24,14 +24,14 @@ def is_data_exist():
 
 # print(is_data_exist())
 
-def do_you_update_data():
+def do_you_update_data() -> str:
     status = 'database of deputies has not been updated '
     now = datetime.now().weekday()
     current_date = datetime.now().date()
     modyfi_date = datetime.fromtimestamp(path.getmtime('data.json')).date()
     date_testing = str(current_date - modyfi_date)
     if now == (4 or 3) and date_testing != '0:00:00':
-        #TODO: perhaps an assumption error
+        # TODO: perhaps an assumption error
         data = requests.get(url_api)
         data.raise_for_status()
         with open("data.json", "w", encoding='utf-8') as f:
@@ -40,7 +40,7 @@ def do_you_update_data():
     return status
 
 
-print(do_you_update_data())
+# print(do_you_update_data())
 
 
 #
@@ -58,6 +58,7 @@ def parse_json() -> list:
 
 
 meps_data = parse_json()
+
 
 # print(meps_data, ' mepsdata')
 
