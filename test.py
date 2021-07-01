@@ -1,6 +1,6 @@
 from declension import declension_vocative
-from politicians import get_name_for_body, random_email, parse_json
-
+from politicians import get_name_for_body, random_email, parse_json, get_email_adress
+from pyisemail import is_email
 
 def test_declension_vocative():
     assert declension_vocative('arek marek') == 'Arku Marku'
@@ -30,3 +30,8 @@ def test_get_name_for_body():
     chosen = ['Witold.Czarnecki@sejm.pl', 'Witold', 'Witold Czarnecki', 'Witoldzie Czarnecki']
     output = get_name_for_body(chosen)
     assert output == 'Witoldzie Czarnecki'
+
+def test_get_email_adress():
+    chosen = ['Witold.Czarnecki@sejm.pl', 'Witold', 'Witold Czarnecki', 'Witoldzie Czarnecki']
+    output = is_email(get_email_adress(chosen))
+    assert output == True

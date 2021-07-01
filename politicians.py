@@ -57,7 +57,7 @@ def parse_json() -> list:
     return meps_data
 
 
-meps_data = parse_json()
+# meps_data = parse_json()
 
 
 # print(meps_data, ' mepsdata')
@@ -73,7 +73,7 @@ def random_email(meps: list) -> list:
 # TODO: ['Szymon', 'Szynkowski', 'vel', 'Sęk'] an external program does not change double surnames
 
 
-chosen = random_email(meps_data)
+# chosen = random_email(meps_data)
 
 
 # print(chosen, ' chosen', type(chosen))
@@ -84,5 +84,11 @@ def get_name_for_body(chosen: list) -> str:
     return name
 
 
-name = get_name_for_body(chosen)
+# name = get_name_for_body(chosen)
 # print(name, ' ', type(name))
+
+def get_email_adress(chosen: list) -> str:
+    email= chosen[0]
+    return email
+
+# print(get_email_adress(chosen))
