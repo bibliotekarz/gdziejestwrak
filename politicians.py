@@ -30,7 +30,8 @@ def do_you_update_data():
     current_date = datetime.now().date()
     modyfi_date = datetime.fromtimestamp(path.getmtime('data.json')).date()
     date_testing = str(current_date - modyfi_date)
-    if now == (2 or 3) and date_testing != '0:00:00':
+    if now == (4 or 3) and date_testing != '0:00:00':
+        #TODO: perhaps an assumption error
         data = requests.get(url_api)
         data.raise_for_status()
         with open("data.json", "w", encoding='utf-8') as f:
@@ -39,11 +40,11 @@ def do_you_update_data():
     return status
 
 
-# print(do_you_update_data())
+print(do_you_update_data())
 
 
 #
-def work_json() -> list:
+def parse_json() -> list:
     i = 0
     meps_data = []
     with open('data.json', 'r', encoding='utf8') as json_file:
@@ -56,10 +57,10 @@ def work_json() -> list:
     return meps_data
 
 
-meps_data = work_json()
+meps_data = parse_json()
 
+# print(meps_data, ' mepsdata')
 
-print(meps_data, ' mepsdata')
 
 def random_email(meps: list) -> list:
     chosen = choice(meps)
@@ -67,18 +68,20 @@ def random_email(meps: list) -> list:
     chosen.append(vocative)
     return chosen
 
-#TODO: ['Szymon', 'Szynkowski', 'vel', 'Sęk'] an external program does not change double surnames
+
+# TODO: ['Szymon', 'Szynkowski', 'vel', 'Sęk'] an external program does not change double surnames
 
 
 chosen = random_email(meps_data)
 
 
-# print(chosen, ' chosen')
+# print(chosen, ' chosen', type(chosen))
 
 
-def get_name_for_body(chosen):
+def get_name_for_body(chosen: list) -> str:
     name = chosen[-1]
     return name
 
+
 name = get_name_for_body(chosen)
-# print(name)
+# print(name, ' ', type(name))

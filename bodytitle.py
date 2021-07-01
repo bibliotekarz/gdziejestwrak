@@ -1,5 +1,5 @@
 from random import choice
-from politicians import get_name_for_body, work_json
+from politicians import get_name_for_body, parse_json
 
 def random_subject():
     email_title = ['Kto odkąd PiS jest u władzy odpowiada za brak działań międzynarodowych aby odzyskać wrak',

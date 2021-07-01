@@ -2,11 +2,11 @@ import yagmail
 from os import getenv
 from dotenv import load_dotenv
 from bodytitle import random_subject, random_body
-from politicians import random_email, work_json, get_name_for_body
+from politicians import random_email, parse_json, get_name_for_body
 
 load_dotenv()
 
-receiver = random_email(work_json())[0]
+receiver = random_email(parse_json())[0]
 subject = random_subject()
 contents = '' #random_body(get_name_for_body(chosen))
 # TODO: resolve duplicate club_name
